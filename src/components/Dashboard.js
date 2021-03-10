@@ -7,17 +7,17 @@ import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid';
 
 export default function Dashboard({searchResults, setSearchResults, searchTerm}){
-   
-    const appData=useContext(AppContext);
     
+    //consuming global context through contextAPI
+    const appData=useContext(AppContext);
+
     useEffect(() => {
-       
         const results = appData&&appData.filter(story =>
             story.item.headline[0].toLowerCase().includes(searchTerm)
         );
         setSearchResults(results);
-       
-      }, [searchTerm]);
+    }, [searchTerm]);
+
     return(
         <Container style={{marginTop:"70px"}}>
             <Grid container spacing={3} >

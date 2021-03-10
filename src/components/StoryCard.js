@@ -1,21 +1,15 @@
 import React, { useState, useContext, useEffect } from "react";
+import moment from 'moment';
 
 import { makeStyles } from '@material-ui/core/styles';
-import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
-import CardMedia from '@material-ui/core/CardMedia';
-import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
-import Collapse from '@material-ui/core/Collapse';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import { red } from '@material-ui/core/colors';
+
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 import Skeleton from '@material-ui/lab/Skeleton';
 
@@ -26,9 +20,6 @@ const useStyles = makeStyles((theme) => ({
       display: "flex",
       flexDirection: "column",
       justifyContent: "space-between"
-    },
-    media: {
-      height: 190,
     },
   }));
 
@@ -46,6 +37,7 @@ export default function StoryCard({story}){
   
     return (
      <Card className={classes.card}>
+
       <CardHeader
         action={
           <IconButton aria-label="settings" onClick={handleFavClick}>
@@ -56,7 +48,7 @@ export default function StoryCard({story}){
         subheader={story.story.subheadline}
       />
        
-        <CardHeader
+      <CardHeader
         avatar={
             <Avatar
               alt="Ted talk"
@@ -65,18 +57,15 @@ export default function StoryCard({story}){
         }
         action={
             <IconButton aria-label="settings">
-              <ExpandMoreIcon />
-               
+              <ShareIcon />
             </IconButton>
         }
         title={
           story.story["author-name"]
         }
-        subheader={'5 hours ago'}
+        subheader={moment(story.story["updated-at"]).format('MMMM Do YYYY')}
       />
-      
-
-       
+  
     </Card>
     );
 }

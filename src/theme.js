@@ -1,9 +1,6 @@
 import { red } from '@material-ui/core/colors';
 
-
-
 export const light = {
-
   palette: {
     type: 'light',
     primary: {
@@ -39,8 +36,6 @@ export const dark = {
     error: {
       main: red.A400,
     },
-    
   },
-
 }
 

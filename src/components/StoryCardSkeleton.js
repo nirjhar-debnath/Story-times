@@ -31,33 +31,36 @@ const useStyles = makeStyles((theme) => ({
 
 export default function StoryCardSkeleton(){
     
- 
     const classes = useStyles();
 
-  
     return (
      <Card className={classes.card}>
 
-      <CardContent>
-        <React.Fragment>
-          <Skeleton animation="wave" height={10} style={{ marginBottom: 6 }} />
-          <Skeleton animation="wave" height={10} width="80%" />
-        </React.Fragment>
-      </CardContent>
-
-      <Skeleton animation="wave" variant="rect" className={classes.media} />
-      
+      <CardHeader
+        action={
+          <IconButton aria-label="settings" >
+            {<FavoriteIcon />}
+          </IconButton>
+        }
+        title={ <Skeleton animation="wave" height={40} style={{ marginBottom: 6 }} />}
+        subheader={<Skeleton animation="wave" height={20} width="80%" />}
+      />
+       
       <CardHeader
         avatar={
-            <Skeleton animation="wave" variant="circle" width={40} height={40} />
+          <Skeleton animation="wave" variant="circle" width={40} height={40} />
+        }
+        action={
+            <IconButton aria-label="settings">
+              <ShareIcon />
+            </IconButton>
         }
         title={
-            <Skeleton animation="wave" height={10} width="80%" style={{ marginBottom: 6 }} />
+          <Skeleton animation="wave" height={20} style={{ marginBottom: 6 }} />
         }
-        subheader={'5 hours ago'}
+        subheader={<Skeleton animation="wave" height={20} width="80%" />}
       />
-      
-      
+
     </Card>
     );
 }
