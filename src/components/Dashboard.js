@@ -1,5 +1,5 @@
 import React, {useContext, useEffect} from 'react'
-import AppContext from "./AppContext";
+import AppContext from "../hooks/AppContext";
 import StoryCard from "./StoryCard";
 import StoryCardSkeleton from "./StoryCardSkeleton"
 
