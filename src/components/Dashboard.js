@@ -13,7 +13,7 @@ export default function Dashboard({searchResults, setSearchResults, searchTerm})
 
     useEffect(() => {
         const results = appData&&appData.filter(story =>
-            story.item.headline[0].toLowerCase().includes(searchTerm)
+            story.item.headline[0].toLowerCase().includes(searchTerm.toLowerCase())
         );
         setSearchResults(results);
     }, [searchTerm]);
