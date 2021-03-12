@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
+import FavoriteIcon from '@material-ui/icons/Favorite';
 import SearchIcon from '@material-ui/icons/Search';
 import Brightness7Icon from '@material-ui/icons/Brightness7';
 import Brightness3Icon from '@material-ui/icons/Brightness3';
@@ -63,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function TopBar({theme, setTheme, searchTerm, setSearchTerm}) {
+export default function TopBar({theme, setTheme, searchTerm, setSearchTerm, showFav, setShowFav}) {
   const classes = useStyles();
 
   const icon = !theme ? <Brightness7Icon /> : <Brightness3Icon /> 
@@ -102,6 +103,15 @@ export default function TopBar({theme, setTheme, searchTerm, setSearchTerm}) {
           >
             {icon}
           </IconButton>
+          <IconButton
+            edge="end"
+            color="inherit"
+            aria-label="mode"
+            onClick={() => setShowFav(!showFav)}
+          >
+          {!showFav?<FavoriteIcon />:<FavoriteIcon color="error"/>}
+          </IconButton>
+          
           
         </Toolbar>
       </AppBar>

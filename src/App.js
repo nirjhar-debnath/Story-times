@@ -15,7 +15,8 @@ export default function App() {
   const [theme, setTheme] = useState(useThemeDetector())
   const [searchTerm, setSearchTerm] =  useState("")
   const [searchResults, setSearchResults] = useState([]);
- 
+  const [showFav, setShowFav] = useState(false);
+
   const appliedTheme = createMuiTheme(theme ? dark : light)
 
   useEffect(() => {
@@ -24,14 +25,14 @@ export default function App() {
       .then(data => {setAppData(data.items);setSearchResults(data.items)});
       
   }, [])
-
+  
   return (
     <div style={{backgroundColor:!theme?"#ecf0f1":"#121212",minHeight:"100vh"}}>
       <ThemeProvider theme={appliedTheme}>
         <AppContext.Provider value={appData}>
-          <TopBar theme={theme} setTheme={setTheme} searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>
+          <TopBar theme={theme} setTheme={setTheme} searchTerm={searchTerm} setSearchTerm={setSearchTerm} showFav={showFav} setShowFav={setShowFav}/>
           <br/>
-          <Dashboard searchResults={searchResults} setSearchResults={setSearchResults} searchTerm={searchTerm}/>
+          <Dashboard searchResults={searchResults} setSearchResults={setSearchResults} searchTerm={searchTerm} showFav={showFav}/>
         </AppContext.Provider>
       </ThemeProvider>
     </div>

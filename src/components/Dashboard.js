@@ -6,7 +6,7 @@ import StoryCardSkeleton from "./StoryCardSkeleton"
 import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid';
 
-export default function Dashboard({searchResults, setSearchResults, searchTerm}){
+export default function Dashboard({searchResults, setSearchResults, searchTerm, showFav}){
     
     //consuming global context through contextAPI
     const appData=useContext(AppContext);
@@ -24,7 +24,11 @@ export default function Dashboard({searchResults, setSearchResults, searchTerm})
                 {!appData||!searchResults?[1,2,3,4,5,6,7,8,9].map(story=>{
                     return( <Grid item xs={12} sm={6} md={4}> <StoryCardSkeleton /> </Grid>)
                 }):searchResults&&searchResults.map(story=>{
-                    return( <Grid item xs={12} sm={6} md={4} style={{display: 'flex'}}> <StoryCard story={story} key={story.id} prefav={localStorage.getItem(story.id)}/> </Grid>)
+                    if(showFav&&localStorage.getItem(story.id))
+                        return( <Grid item xs={12} sm={6} md={4} style={{display: 'flex'}}> <StoryCard story={story} key={story.id} prefav={localStorage.getItem(story.id)}/> </Grid>)
+                    else if(!showFav){
+                        return( <Grid item xs={12} sm={6} md={4} style={{display: 'flex'}}> <StoryCard story={story} key={story.id} prefav={localStorage.getItem(story.id)}/> </Grid>)
+                    }
                 })}
             </Grid>
         </Container>
